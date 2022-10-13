@@ -5,7 +5,7 @@ defmodule EctoBugTest do
   alias EctoBug.Schema.Post
 
   describe "upsert" do
-    test "when the contents of posts are changed, it should return the IDs of the updated posts" do
+    test "when the contents of posts have been changed, it should return the IDs of the updated posts" do
       {:ok, author} = %{name: "authorz"} |> Author.changeset() |> Repo.insert()
 
       {:ok, _} =
@@ -32,7 +32,7 @@ defmodule EctoBugTest do
       end)
     end
 
-    test "when the counters of authors are changed, it should return the IDs of the updated authors" do
+    test "when the counters of authors have been changed, it should return the IDs of the updated authors" do
       # author 1
       {:ok, author_1} = %{name: "author1", counter: 0} |> Author.changeset() |> Repo.insert()
 

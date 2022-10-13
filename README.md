@@ -1,17 +1,32 @@
 # EctoBug
 
-PoC for replicating Ecto upsert bug
+PoC for replicating Ecto upsert bug.
 
-``` bash
-mix deps.get && mix compile
-mix ecto.create
-mix ecto.migrate
+To replicate the bug:
 
-iex -S mix run -e "EctoBug.replicate"
-```
+1. launch mysql and keep it running:
+    ``` bash
+    docker compose up
+    ```  
 
-Expected result: the ID of the returned updated author is not `nil`
-Actual result
+2. execute tests:
+    ``` bash
+    mix deps.get && mix compile
+    mix ecto.create
+    mix ecto.migrate
+
+    iex -S mix run -e "EctoBug.replicate"
+    ```
+    
+    **OR**
+
+    ``` bash
+    mix deps.get && mix test
+    ```
+
+Expected result: the ID of the returned updated author is not `nil`.
+
+Actual result:
 
 ``` elixir
 %EctoBug.Schema.Author{
@@ -27,7 +42,7 @@ Actual result
 
 ## Working case
 
-If we put a sleep after each write, the ID of the updated record is not nil:
+If we put a `:timer.sleep` after each write, the ID of the updated record is not `nil`:
 ``` elixir
 %EctoBug.Schema.Author{
   __meta__: #Ecto.Schema.Metadata<:loaded, "authors">,
