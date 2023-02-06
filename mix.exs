@@ -28,9 +28,8 @@ defmodule EctoBug.MixProject do
   defp deps do
     [
       # uncomment the next line and comment the following line  to test the old version
-      {:ecto, "~> 3.8"},
-      #{:ecto, git: "https://github.com/elixir-ecto/ecto", override: true},
-      {:ecto_sql, "~> 3.8"},
+      {:ecto, "~> 3.9.1"},
+      {:ecto_sql, "~> 3.9.0"},
       {:myxql, "~> 0.6.3"}
 
       # {:dep_from_hexpm, "~> 0.3.0"},

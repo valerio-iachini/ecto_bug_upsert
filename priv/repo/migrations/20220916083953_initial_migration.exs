@@ -15,7 +15,7 @@ defmodule EctoBug.Repo.Migrations.InitialMigration do
       add :title,    :string
       add :content,    :string
 
-      add :author_id, references("authors")
+      add :author_id, references("authors",on_delete: :delete_all, on_update: :update_all)
 
       timestamps()
     end

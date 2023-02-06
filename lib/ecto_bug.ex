@@ -50,6 +50,24 @@ defmodule EctoBug do
     end)
   end
 
+  # works
+  def do_replicate(:replace_all) do
+    Repo.delete_all(Post)
+
+    [
+      %{name: "author1", counter: 0},
+      %{name: "author2", counter: 0}
+    ]
+    |> Enum.each(fn changeset ->
+      {:ok, updated_author} =
+        changeset
+        |> Author.changeset()
+        |> Repo.insert(on_conflict: :replace_all)
+
+      IO.inspect(updated_author.id, label: "UPDATED ID")
+    end)
+  end
+
   defp clear_db() do
     Repo.delete_all(Post)
     Repo.delete_all(Author)
